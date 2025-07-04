@@ -8,8 +8,8 @@ public class ShippingService {
 
     public static double shippingFees(List<Shippable> products){
         return products.stream()
-                .map(p -> p.getWeight())
-                .reduce(0.0, Double::sum) *  0.02727;
+                .map(p -> p.getWeight()/100)
+                .reduce(0.0, Double::sum);
     }
 
 }
