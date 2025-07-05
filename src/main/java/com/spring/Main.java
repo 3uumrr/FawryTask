@@ -1,15 +1,12 @@
 package com.spring;
 
 import com.spring.models.cart.Cart;
-import com.spring.models.cart.CartItem;
 import com.spring.models.customer.Customer;
 import com.spring.models.product.*;
 import com.spring.services.CheckoutService;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -23,8 +20,13 @@ public class Main {
 
         cart.add(cheese,2);
         cart.add(biscuits,1);
-        cart.add(scratchCard,1);
-        CheckoutService.checkout(customer,cart);
+        cart.add(scratchCard,10);
+
+        try {
+            CheckoutService.checkout(customer,cart);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 }

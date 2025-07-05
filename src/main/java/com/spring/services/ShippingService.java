@@ -1,9 +1,7 @@
 package com.spring.services;
 
-import com.spring.models.cart.CartItem;
 import com.spring.models.product.Product;
 import com.spring.models.product.Shippable;
-
 import java.util.List;
 
 public class ShippingService {
