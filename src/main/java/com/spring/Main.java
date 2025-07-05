@@ -8,23 +8,23 @@ import com.spring.services.CheckoutService;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
+
         Product cheese = new ShippableAndExpirableProduct("Cheese",new BigDecimal(100),4,LocalDate.of(2025, 7, 10),200);
-        Product Biscuits = new ShippableAndExpirableProduct("Biscuits",new BigDecimal(150),4,LocalDate.of(2025, 7, 10),700);
+        Product biscuits = new ShippableAndExpirableProduct("Biscuits",new BigDecimal(150),4,LocalDate.of(2025, 7, 10),700);
+        Product scratchCard = new NonExpirableProduct("scratchCard",new BigDecimal(20),3);
 
-        CartItem cartItem1 = new CartItem(cheese,2);
-        CartItem cartItem2 = new CartItem(Biscuits,1);
-
-        Cart cart = new Cart(Set.of(cartItem1,cartItem2));
-
+        Cart cart = new Cart();
         Customer customer = new Customer("Omar",10000, cart);
 
+        cart.add(cheese,2);
+        cart.add(biscuits,1);
+        cart.add(scratchCard,1);
         CheckoutService.checkout(customer,cart);
-
-
 
     }
 }

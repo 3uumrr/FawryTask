@@ -31,12 +31,13 @@ public class CheckoutService {
         validateProductNotExpired(expirableProduct); // Check If Product Was ُُExpired
         validateProductOutOfStock(cart.getCartItems()); // Check If Product Was ُُOut Of Stock
 
-        List<Shippable> shippableProducts = cart.getCartItems().stream()
-                .filter(item -> item.getProduct() instanceof Shippable)
-                .map(item -> (Shippable) item.getProduct())
+
+        List<Product> shippableProduct = cart.getCartItems().stream()
+                .map(CartItem::getProduct)
+                .filter(product -> product instanceof Shippable)
                 .toList();
 
-        double shipping =  ShippingService.shippingFees(shippableProducts);
+        double shipping =  ShippingService.shippingFees(shippableProduct);
 
         customer.setBalance(customer.getBalance() - cart.getTotalAmount().doubleValue() - shipping); // Withdraw Money From The Customer
 
@@ -113,9 +114,14 @@ public class CheckoutService {
                     .map(CartItem::getTotalPrice)
                     .reduce(BigDecimal.ZERO,BigDecimal::add);
 
+        List<Product> shippableProduct = cart.getCartItems().stream()
+                .map(CartItem::getProduct)
+                .filter(product -> product instanceof Shippable)
+                .toList();
+
         System.out.println("-------------------------------");
         System.out.println("Subtotal " + subtotal);
-        double shipping =  ShippingService.shippingFees(cartItems.stream().map(item -> (Shippable) item.getProduct()).toList());
+        double shipping =  ShippingService.shippingFees(shippableProduct);
         System.out.println("Shipping " + shipping);
         System.out.println("Amount " + (subtotal.add(new BigDecimal(shipping))));
         System.out.println("Customer Current Balance After Payment : " + customer.getBalance());
