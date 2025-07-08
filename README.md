@@ -4,3 +4,7 @@
 2. Open in **IntelliJ IDEA**
 3. Ensure Java SDK is installed
 4. Run the `Main.java` or create your own simulation
+
+
+## 📷 Screenshots From My Running  App
+![Bookstore screenshot](images/pic1.png)
