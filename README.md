@@ -8,3 +8,4 @@
 
 ## 📷 Screenshots From My Running  App
 ![Bookstore screenshot](images/pic1.png)
+![Bookstore screenshot](images/pic2.png)
