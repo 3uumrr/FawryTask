@@ -20,7 +20,7 @@ public class Main {
 
         cart.add(cheese,2);
         cart.add(biscuits,1);
-        cart.add(scratchCard,10);
+        cart.add(scratchCard,1);
 
         try {
             CheckoutService.checkout(customer,cart);
